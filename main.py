@@ -22,7 +22,7 @@ df_heat = df[(df['height'] >= df['height'].quantile(0.025)) &
                 (df['weight'] >= df['weight'].quantile(0.025)) &
                 (df['weight'] <= df['weight'].quantile(0.975))]
 corr = df_heat.corr()
-mask = np.triu(np.ones_like(corr, dtype=bool))
+mask = np.tril(np.ones_like(corr, dtype=bool))
 fig, ax = plt.subplots(figsize=(10, 8))
-sns.heatmap(corr, mask=mask, annot=True, fmt=".1f", cmap="icefire", cbar_kws={"shrink": 0.5}, linewidths=0.5)
+sns.heatmap(corr, mask=mask, annot=True, fmt=".1f", cmap="icefire", cbar_kws={"shrink": 0.5})
 fig.savefig('heatmap.png')
